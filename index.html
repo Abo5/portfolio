@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>»Abdullah Portfolio</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3a86ff;
+            --secondary-color: #ff006e;
+            --tertiary-color: #8338ec;
+            --text-color: #2b2d42;
+            --bg-color: #ffffff;
+            --header-height: 80px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: var(--header-height);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section Styles */
+        .hero {
+            display: flex;
+            align-items: center;
+            min-height: 100vh;
+            padding-top: var(--header-height);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            flex: 1;
+            padding-right: 50px;
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::before {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            color: var(--primary-color);
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typing 6s steps(30) infinite;
+        }
+
+        @keyframes typing {
+            0%, 90%, 100% {
+                width: 0;
+            }
+            30%, 60% {
+                width: 100%;
+            }
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            color: var(--secondary-color);
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: 1s;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            max-width: 600px;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: 2s;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(-100%) rotate(45deg);
+            transition: all 0.6s;
+        }
+
+        .btn:hover::before {
+            transform: translateX(100%) rotate(45deg);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: 2.5s;
+        }
+
+        .social-links a {
+            color: var(--text-color);
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+            transform: translateY(-5px) rotate(360deg);
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: imageReveal 1s ease forwards;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes imageReveal {
+            from {
+                opacity: 0;
+                transform: scale(0.8) rotate(-10deg);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) rotate(0);
+            }
+        }
+
+        .hero-image::before,
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border-radius: 20px;
+            z-index: -1;
+            transition: all 0.3s ease;
+        }
+
+        .hero-image::before {
+            transform: rotate(-6deg);
+        }
+
+        .hero-image::after {
+            transform: rotate(6deg);
+        }
+
+        .hero-image:hover::before {
+            transform: rotate(-8deg) scale(1.05);
+        }
+
+        .hero-image:hover::after {
+            transform: rotate(8deg) scale(1.05);
+        }
+
+        .hero-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .animated-bg span {
+            position: absolute;
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: rgba(58, 134, 255, 0.1);
+            animation: move 25s linear infinite;
+            bottom: -150px;
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+                border-radius: 0;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+                border-radius: 50%;
+            }
+        }
+
+        /* Pop-up Styles */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            z-index: 1001;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .popup-content h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .popup-content p {
+            margin-bottom: 20px;
+        }
+
+        .close-popup {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: calc(var(--header-height) + 50px);
+            }
+
+            .hero-content {
+                padding-right: 0;
+                margin-bottom: 50px;
+            }
+
+            .cta-buttons, .social-links {
+                justify-content: center;
+            }
+
+            h1 {
+                font-size: 4rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .btn {
+                padding: 12px 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            .social-links a {
+                font-size: 1.5rem;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">Ruby..Dev</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#" class="popup-trigger" data-popup="about">About</a></li>
+                <li><a href="#" class="popup-trigger" data-popup="my-work">My Work</a></li>
+                <li><a href="#" class="popup-trigger" data-popup="services">Services</a></li>
+                <li><a href="#" class="popup-trigger" data-popup="contact">Contact</a></li>
+                <li><a href="#" class="popup-trigger" data-popup="info">Info</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero container">
+            <div class="hero-content">
+                <h1 data-text="Code. Design. Innovate.">Code. Design. Innovate.</h1>
+                <h2>Full-Stack Developer & Cloud Engineer</h2>
+                <p>Empowering web applications with seamless integration and scalable cloud solutions, alongside expertise in Ruby on Rails and JavaScript, with web applications & comfiguration and integration in CI/CD and DevOps.</p>
+                <div class="cta-buttons">
+                    <a href="https://github.com/Abo5/my-work" class="btn btn-primary">View Projects</a>
+                    <a href="mailto:alwadayi.abdullah@gmail.com?subject=Request%20to%20Connect&body=Dear%20Abdullah,%0D%0A%0D%0AI%20recently%20came%20across%20your%20profile%20and%20was%20impressed%20by%20your%20work.%20I%20would%20love%20to%20schedule%20a%20meeting%20to%20discuss%20potential%20collaborations.%0D%0A%0D%0ABest%20regards,%0D%0A[Your%20Name]" class="btn btn-secondary">Get in Touch</a>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/abdullah-saleh-424bb9307/"><i class='bx bxl-linkedin'></i></a>
+                    <a href="https://github.com/Abo5"><i class='bx bxl-github'></i></a>
+                    <a href="https://dribbble.com/A88"><i class='bx bxl-dribbble'></i></a>
+                    <a href="https://x.com/xxAbo7d_s"><i class='bx bxl-twitter'></i></a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://media.gettyimages.com/id/1129377183/photo/woman-busy-working-on-her-laptop-at-cafe.jpg?s=612x612&w=0&k=20&c=0s9-VBY1M9kegpp-tqa5a_q5EKrid2-6KQQFxP8WDTw=">
+            </div>
+            <div class="animated-bg">
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pop-up windows -->
+    <div class="popup" id="about-popup">
+        <div class="popup-content">
+            <span class="close-popup">&times;</span>
+            <h3>About Me</h3>
+            <p>I'm a passionate Full-Stack Developer and Cloud Engineer with a keen interest in creating scalable and efficient web applications. My expertise lies in Ruby on Rails, JavaScript, also i have and cloud technologiesI, also have experience in python, erlang, elixir and their uses for DevOps and I have experience in Ruby pure.</p>
+        </div>
+    </div>
+
+    <div class="popup" id="my-work-popup">
+        <div class="popup-content">
+            <span class="close-popup">&times;</span>
+            <h3>My Work</h3>
+            <p>Here you can find some of my recent projects and contributions. I specialize in developing robust web applications and implementing cloud solutions for various industries, you can access to my work in Github https://github.com/Abo5/my-work</p>
+        </div>
+    </div>
+
+    <div class="popup" id="services-popup">
+        <div class="popup-content">
+            <span class="close-popup">&times;</span>
+            <h3>Services</h3>
+            <p>I offer a range of services including full-stack web development, cloud architecture and deployment, DevOps implementation, and technology consulting.</p>
+        </div>
+    </div>
+
+    <div class="popup" id="contact-popup">
+        <div class="popup-content">
+            <span class="close-popup">&times;</span>
+            <h3>Contact Me</h3>
+            <p>Feel free to reach out to me for any inquiries or collaboration opportunities. You can contact me via email at alwadayi.abdullah@gmail.com or through my social media profiles, you can tell me about your project and i will response to you as soon as possible</p>
+        </div>
+    </div>
+
+    <div class="popup" id="info-popup">
+        <div class="popup-content">
+            <span class="close-popup">&times;</span>
+            <h3>Additional Information</h3>
+            <p>Here you can find additional information about my skills, certifications, and ongoing projects. I'm always eager to learn and take on new challenges in the ever-evolving tech world.</p>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <script>
+        // Add smooth scrolling to navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Animated background
+        const animatedBg = document.querySelector('.animated-bg');
+        for (let i = 0; i < 50; i++) {
+            const span = document.createElement('span');
+            span.style.width = `${Math.random() * 30 + 10}px`;
+            span.style.height = span.style.width;
+            span.style.top = `${Math.random() * 100}%`;
+            span.style.left = `${Math.random() * 100}%`;
+            span.style.animationDuration = `${Math.random() * 10 + 15}s`;
+            span.style.animationDelay = `${Math.random() * 5}s`;
+            animatedBg.appendChild(span);
+        }
+
+        // Parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero-image');
+            parallax.style.transform = `translateY(${scrolled * 0.3}px)`;
+        });
+
+        // Typing effect for main heading
+        const heading = document.querySelector('h1');
+        const text = heading.getAttribute('data-text');
+        let i = 0;
+
+        function typeWriter() {
+            if (i < text.length) {
+                heading.innerHTML = text.substring(0, i+1) + '<span aria-hidden="true"></span>';
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+
+        typeWriter();
+
+        // Pop-up functionality
+        const popupTriggers = document.querySelectorAll('.popup-trigger');
+        const overlay = document.getElementById('overlay');
+        const closePopups = document.querySelectorAll('.close-popup');
+
+        popupTriggers.forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                const popupId = `${trigger.getAttribute('data-popup')}-popup`;
+                const popup = document.getElementById(popupId);
+                popup.style.display = 'block';
+                overlay.style.display = 'block';
+            });
+        });
+
+        closePopups.forEach(closeBtn => {
+            closeBtn.addEventListener('click', () => {
+                closeBtn.closest('.popup').style.display = 'none';
+                overlay.style.display = 'none';
+            });
+        });
+
+        overlay.addEventListener('click', () => {
+            document.querySelectorAll('.popup').forEach(popup => {
+                popup.style.display = 'none';
+            });
+            overlay.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
